@@ -2,18 +2,20 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
 import { CustomInput } from "../../components/customInput/CustomInput";
 import { useState } from "react";
+import { postNewUser } from "../../helpers/axiosHelper";
+import { toast } from "react-toastify";
 
 const inputs = [
   {
     label: "First Name",
-    name: "name",
+    name: "fName",
     type: "text",
     required: true,
     placeholder: "Sam",
   },
   {
     label: "Last Name",
-    name: "lname",
+    name: "lName",
     type: "text",
     required: true,
     placeholder: "Sam",
@@ -73,19 +75,29 @@ const SignIn = () => {
     // }
 
     if (name === "password" && form.confirmPassword) {
-      form.confirmPassword !== value && setError("Passwords donot match");
+      form.confirmPassword !== value && setError("Passwords do not match");
     }
 
     setForm({ ...form, [name]: value });
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     const { confirmPassword, ...rest } = form;
-
     console.log(rest);
+    console.log(confirmPassword);
+    if (confirmPassword !== rest.password) {
+      return alert("passwords donot match");
+    }
+
+    const responsePending = postNewUser(rest);
+    toast.promise(responsePending, { pending: "please wait....." });
+
+    const { status, message } = await responsePending;
+    toast[status](message);
   };
+
   return (
     <DefaultLayout>
       <Row>
