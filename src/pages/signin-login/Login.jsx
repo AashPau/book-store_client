@@ -3,6 +3,7 @@ import { DefaultLayout } from "../../components/layout/DefaultLayout";
 import { CustomInput } from "../../components/customInput/CustomInput";
 import { useRef } from "react";
 import { toast } from "react-toastify";
+import { logInUser } from "../../helpers/axiosHelper";
 
 const SignIn = () => {
   const emailRef = useRef("");
@@ -27,7 +28,7 @@ const SignIn = () => {
     },
   ];
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passRef.current.value;
@@ -35,6 +36,11 @@ const SignIn = () => {
     if (!email || !password) {
       return toast.error("Botn field must be filled");
     }
+    const result = await logInUser({
+      email,
+      password,
+    });
+    console.log(result);
   };
   return (
     <DefaultLayout>
