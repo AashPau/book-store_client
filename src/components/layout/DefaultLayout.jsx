@@ -1,6 +1,7 @@
-import { Container } from "react-bootstrap";
-import { Footer } from "./Footer";
+import React from "react";
 import { Header } from "./Header";
+import { Footer } from "./Footer";
+import Container from "react-bootstrap/esm/Container";
 
 export const DefaultLayout = ({ children, pageTitle }) => {
   return (
@@ -8,10 +9,10 @@ export const DefaultLayout = ({ children, pageTitle }) => {
       {/* header  */}
       <Header />
       <Container>
-        {/* body  */}
         <div className="p-2">{pageTitle}</div>
         <main className="main">{children}</main>
       </Container>
+
       {/* footer  */}
       <Footer />
     </div>

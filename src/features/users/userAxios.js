@@ -1,36 +1,31 @@
-const serverURL = import.meta.env.VITE_APP_ROOTSERVER;
+import { apiProcesser } from "../../helpers/axiosHelper";
+
+const serverURL = import.meta.env.VITE_APP_ROOT_SERVER;
 const userEP = serverURL + "/api/v1/users";
 
-import { apiProcessor } from "../../helpers/axiosHelper";
-
-//=============user api request
-//login user
-
-export const logInUser = async (obj) => {
+export const loginUser = async (obj) => {
   const axiosObj = {
     method: "post",
     url: userEP + "/login",
     data: obj,
   };
-  return await apiProcessor(axiosObj);
+  return apiProcesser(axiosObj);
 };
 
-//post new user
 export const postNewUser = async (obj) => {
   const axiosObj = {
     method: "post",
     url: userEP,
     data: obj,
   };
-  return apiProcessor(axiosObj);
+  return apiProcesser(axiosObj);
 };
 
-//fertch user info
 export const fetchUserInfo = () => {
   const axiosObj = {
     method: "get",
     url: userEP,
     isPrivate: true,
   };
-  return apiProcessor(axiosObj);
+  return apiProcesser(axiosObj);
 };

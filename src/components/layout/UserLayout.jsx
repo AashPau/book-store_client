@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Stack } from "react-bootstrap";
 import { AuthRoute } from "../auth/AuthRoute";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -10,13 +10,14 @@ export const UserLayout = ({ children, pageTitle }) => {
   return (
     <AuthRoute>
       <div>
+        {/* header  */}
         <Header />
         <Container fluid>
           <Row>
             <Col xs={3} className="bg-dark text-light">
               <div className="p-3">
-                <div> Welcome</div>
-                <h3>{user.fname + " " + user.lname}</h3>
+                <div>Welcome Back</div>
+                <h3>{user.fName + " " + user.lName}</h3>
               </div>
               <hr />
               <UserSidebar />
@@ -28,6 +29,8 @@ export const UserLayout = ({ children, pageTitle }) => {
             </Col>
           </Row>
         </Container>
+
+        {/* footer  */}
         <Footer />
       </div>
     </AuthRoute>
