@@ -1,7 +1,7 @@
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
 
-const Product = () => {
+const BookLanding = () => {
   return <DefaultLayout>Products</DefaultLayout>;
 };
 
-export default Product;
+export default BookLanding;

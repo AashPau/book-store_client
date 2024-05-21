@@ -1,13 +1,18 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
 import { CustomInput } from "../../components/customInput/CustomInput";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
-import { logInUser } from "../../helpers/axiosHelper";
+import { fetchUserInfo, logInUser } from "../../features/users/userAxios";
+import { getUserObj } from "../../features/users/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const emailRef = useRef("");
   const passRef = useRef("");
+  const navigate = useNavigate();
 
   const inputs = [
     {
@@ -27,6 +32,12 @@ const SignIn = () => {
       inputRef: passRef,
     },
   ];
+  const { user } = useSelector((state) => state.userInfo);
+  console.log(user);
+
+  useEffect(() => {
+    user?._id && navigate("/dashboard");
+  }, [user?._id, navigate]);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -36,11 +47,18 @@ const SignIn = () => {
     if (!email || !password) {
       return toast.error("Botn field must be filled");
     }
-    const result = await logInUser({
+    const { status, message, tokens } = await logInUser({
       email,
       password,
     });
-    console.log(result);
+    toast[status](message);
+
+    sessionStorage.setItem("accessJWT", tokens.accessJWT);
+    localStorage.setItem("refreshJWT", tokens.refreshJWT);
+
+    if (status === "success") {
+      dispatch(getUserObj());
+    }
   };
   return (
     <DefaultLayout>

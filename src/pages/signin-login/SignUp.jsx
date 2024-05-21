@@ -2,7 +2,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
 import { CustomInput } from "../../components/customInput/CustomInput";
 import { useState } from "react";
-import { postNewUser } from "../../helpers/axiosHelper";
+import { postNewUser } from "../../features/users/userAxios";
 import { toast } from "react-toastify";
 
 const inputs = [
@@ -49,7 +49,7 @@ const inputs = [
     placeholder: "*******",
   },
 ];
-const SignIn = () => {
+const SignUp = () => {
   const [form, setForm] = useState({});
   const [error, setError] = useState("");
 
@@ -138,4 +138,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
