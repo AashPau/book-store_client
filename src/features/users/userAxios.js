@@ -1,6 +1,6 @@
 import { apiProcesser } from "../../helpers/axiosHelper";
 
-const serverURL = import.meta.env.VITE_APP_ROOT_SERVER;
+const serverURL = import.meta.env.VITE_APP_ROOTSERVER;
 const userEP = serverURL + "/api/v1/users";
 
 export const loginUser = async (obj) => {
