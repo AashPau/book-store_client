@@ -18,7 +18,7 @@ export const postNewUser = async (obj) => {
     url: userEP,
     data: obj,
   };
-  return apiProcesser(axiosObj);
+  return await apiProcesser(axiosObj);
 };
 
 export const fetchUserInfo = () => {

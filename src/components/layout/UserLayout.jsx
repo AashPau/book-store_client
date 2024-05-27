@@ -25,7 +25,7 @@ export const UserLayout = ({ children, pageTitle }) => {
             <Col>
               <div className="p-2">{pageTitle}</div>
               <hr />
-              <main className="main">{children}</main>
+              <main className="main mb-3">{children}</main>
             </Col>
           </Row>
         </Container>

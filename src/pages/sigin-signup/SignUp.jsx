@@ -46,12 +46,12 @@ const SignUp = () => {
       return alert("password do not match");
     }
 
-    const responsePendig = postNewUser(rest);
-    toast.promise(responsePendig, {
+    const responsePending = postNewUser(rest);
+    toast.promise(responsePending, {
       pending: "Please wait....",
     });
 
-    const { status, message } = await responsePendig;
+    const { status, message } = await responsePending;
     toast[status](message);
   };
 

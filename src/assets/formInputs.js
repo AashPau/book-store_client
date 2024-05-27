@@ -1,0 +1,48 @@
+export const inputFields = [
+  {
+    label: "title",
+    type: "text",
+    name: "title",
+    required: true,
+    placeholder: "Title",
+  },
+  {
+    label: "Author",
+    type: "text",
+    name: "author",
+    required: true,
+    placeholder: "Author",
+  },
+  {
+    label: "Thumbnail",
+    type: "url",
+    name: "thumbnail",
+    required: true,
+    placeholder: "URL",
+  },
+  {
+    label: "ISBN",
+    type: "isbn",
+    name: "text",
+    required: true,
+    placeholder: "ISBN",
+  },
+  {
+    label: "Year Published",
+    type: "number",
+    name: "year",
+    min: "1800",
+    required: true,
+    placeholder: "Year Published",
+  },
+  {
+    label: "Description",
+    type: "text",
+    as: "text-area",
+    maxLength: "5000",
+    name: "description",
+    rows: 5,
+    required: true,
+    placeholder: "Book Summary",
+  },
+];
