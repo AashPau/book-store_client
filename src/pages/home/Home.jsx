@@ -14,7 +14,7 @@ const Home = () => {
       <Container>
         <Row>
           <Col className="d-flex justify-content-between mt-5">
-            <label htmlFor="">20 books found!</label>
+            <label>20 books found!</label>
             <div>
               <Form.Control placeholder="search by book name .. " />
             </div>

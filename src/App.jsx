@@ -30,7 +30,7 @@ function App() {
         {/* admin access only  */}
         <Route path="admin/books" element={<BookList />} />
         <Route path="admin/books/new" element={<AddNewBook />} />
-        <Route path="admin/edit/:_id" element={<EditBook />} />
+        <Route path="admin/book/edit/:_id" element={<EditBook />} />
         <Route path="admin/students" element={<StudentsList />} />
         <Route path="admin/all-burrows" element={<AllBurrowList />} />
         <Route path="admin/admins" element={<AdminList />} />

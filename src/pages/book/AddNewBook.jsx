@@ -5,11 +5,19 @@ import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../../components/customInpute/CustomInput";
 import useForm from "../../hooks/useForm";
 import { inputFields } from "../../assets/formInputs";
+import { postNewBookAction } from "../../features/books/bookAction";
+import { useDispatch } from "react-redux";
 
 const initialState = {};
 
 const AddNewBook = () => {
-  const { form, handleOnChange, handleOnSubmit } = useForm(initialState);
+  const dispatch = useDispatch();
+  const { form, handleOnChange } = useForm(initialState);
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    console.log(typeof form.year);
+    dispatch(postNewBookAction(form));
+  };
 
   return (
     <UserLayout pageTitle="New Book">
@@ -26,7 +34,7 @@ const AddNewBook = () => {
           {inputFields.map((input, i) => (
             <CustomInput key={i} {...input} onChange={handleOnChange} />
           ))}
-          <CustomInput />
+
           <div className="d-grid">
             <Button type="submit">Submit New Book</Button>
           </div>
