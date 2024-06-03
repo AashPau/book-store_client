@@ -6,7 +6,7 @@ const getAccessJWT = () => {
   return sessionStorage.getItem("accessJWT");
 };
 const getRefreshJWT = () => {
-  return sessionStorage.getItem("refreshJWT");
+  return localStorage.getItem("refreshJWT");
 };
 
 export const apiProcesser = async ({
@@ -19,7 +19,7 @@ export const apiProcesser = async ({
   const headers = {
     Authorization: isPrivate
       ? isRefresh
-        ? getRefreshJWT
+        ? getRefreshJWT()
         : getAccessJWT()
       : null,
   };

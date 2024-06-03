@@ -2,7 +2,7 @@ import React from "react";
 import { UserLayout } from "../../components/layout/UserLayout";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-// import { IoIosAddCircle } from "react-icons";
+import { IoMdAddCircle } from "react-icons/io";
 import { BookTable } from "../../components/tables/BookTable";
 
 const BookList = () => {
@@ -11,7 +11,7 @@ const BookList = () => {
       <div className="text-end mb-5">
         <Link to="/admin/books/new">
           <Button variant="primary">
-            {/* <IoIosAddCircle /> */}
+            <IoMdAddCircle />
             Add New book
           </Button>
         </Link>

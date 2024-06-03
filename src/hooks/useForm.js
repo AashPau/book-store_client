@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 const handleOnChange = ({ e, form, setForm }) => {
-  const { name, value } = e.target;
+  let { checked, name, value } = e.target;
+  if (name === "status") {
+    value = checked ? "active" : "inactive";
+  }
   setForm({
     ...form,
     [name]: value,
@@ -10,9 +13,11 @@ const handleOnChange = ({ e, form, setForm }) => {
 
 const useForm = (initialState) => {
   const [form, setForm] = useState(initialState);
+  console.log(form);
 
   return {
     form,
+    setForm,
     handleOnChange: (e) => handleOnChange({ e, form, setForm }),
   };
 };

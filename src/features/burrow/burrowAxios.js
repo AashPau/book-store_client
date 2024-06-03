@@ -1,37 +1,37 @@
 import { apiProcesser } from "../../helpers/axiosHelper";
 
-const bookEP = import.meta.env.VITE_APP_ROOTSERVER + "/api/v1/books";
+const burrowEP = import.meta.env.VITE_APP_ROOTSERVER + "/api/v1/burrows";
 
-export const postNewBook = async (obj) => {
+export const postNewBurrow = async (obj) => {
   const axiosObj = {
     method: "post",
-    url: bookEP,
+    url: burrowEP,
     data: obj,
     isPrivate: true,
   };
   return await apiProcesser(axiosObj);
 };
 
-export const fetchBooks = async (isPrivate) => {
+export const fetchBurrows = async (isPrivate) => {
   const axiosObj = {
     method: "get",
-    url: isPrivate ? bookEP + "/all" : bookEP,
+    url: isPrivate ? burrowEP + "/all" : burrowEP,
     isPrivate: true,
   };
   return await apiProcesser(axiosObj);
 };
 
-export const fetchSingleBook = async (_id) => {
+export const fetchSingleBurrow = async (_id) => {
   const axiosObj = {
     method: "get",
-    url: bookEP + "/" + _id,
+    url: burrowEP + "/" + _id,
   };
   return await apiProcesser(axiosObj);
 };
-export const editSingleBook = async (obj) => {
+export const editSingleBurrow = async (obj) => {
   const axiosObj = {
     method: "put",
-    url: bookEP,
+    url: burrowEP,
     isPrivate: true,
     data: obj,
   };

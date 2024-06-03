@@ -3,7 +3,7 @@ import { UserLayout } from "../../components/layout/UserLayout";
 
 const Dashobard = () => {
   return (
-    <UserLayout pageTitle="Dashobard">
+    <UserLayout pageTitle="Dashboard">
       <h1>main area</h1>
     </UserLayout>
   );

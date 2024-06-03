@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { UserLayout } from "../../components/layout/UserLayout";
 import { Link } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
@@ -13,16 +12,17 @@ const initialState = {};
 const AddNewBook = () => {
   const dispatch = useDispatch();
   const { form, handleOnChange } = useForm(initialState);
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(typeof form.year);
+
     dispatch(postNewBookAction(form));
   };
 
   return (
     <UserLayout pageTitle="New Book">
       <div>
-        <Link to="admin/books">
+        <Link to="/admin/books">
           <Button variant="secondary">&lt; Back</Button>
         </Link>
       </div>

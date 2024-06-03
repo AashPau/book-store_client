@@ -3,8 +3,8 @@ import { DefaultLayout } from "../../components/layout/DefaultLayout";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { CustomInput } from "../../components/customInpute/CustomInput";
 import { toast } from "react-toastify";
-import { loginUser } from "../../features/users/userAxios";
-import { getUserObj } from "../../features/users/userAction";
+
+import { userSignInAction } from "../../features/users/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -30,15 +30,16 @@ const SignIn = () => {
       return toast.error("Both field must be filled");
     }
 
-    const { status, message, tokens } = await loginUser({ email, password });
-    toast[status](message);
-    //store tokens in the sessions
-    sessionStorage.setItem("accessJWT", tokens.accessJWT);
-    localStorage.setItem("refreshJWT", tokens.refreshJWT);
+    // const { status, message, tokens } = await loginUser({ email, password });
+    // toast[status](message);
+    // //store tokens in the sessions
+    // sessionStorage.setItem("accessJWT", tokens.accessJWT);
+    // localStorage.setItem("refreshJWT", tokens.refreshJWT);
 
-    if (status === "success") {
-      dispatch(getUserObj());
-    }
+    // if (status === "success") {
+    //   dispatch(getUserObj());
+    // }
+    dispatch(userSignInAction({ email, password }));
   };
 
   const inputs = [
