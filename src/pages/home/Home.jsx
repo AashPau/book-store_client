@@ -14,14 +14,13 @@ const Home = () => {
     setSearchBooks(books);
   }, [books]);
 
-  console.log(books);
-
   const handleOnSearch = (e) => {
     const { value } = e.target;
+
     setSearchBooks(
-      books.filter(({ title }) => {
-        title.toLowerCase().includes(value.toLowerCase());
-      })
+      books.filter(({ title }) =>
+        title.toLowerCase().includes(value.toLowerCase())
+      )
     );
   };
   return (
@@ -46,11 +45,14 @@ const Home = () => {
         <Row>
           <Col className="d-flex gap-2 flex-wrap">
             {/* loop through the book  */}
-            {searchBooks.map((book) => (
-              <Link key={book._id} to={"/book/" + book._id}>
-                <CustomCard key={book._id} {...book} />
-              </Link>
-            ))}
+            {searchBooks.map(
+              (book) =>
+                book.status === "active" && (
+                  <Link key={book._id} to={"/book/" + book._id}>
+                    <CustomCard key={book._id} {...book} />
+                  </Link>
+                )
+            )}
           </Col>
         </Row>
       </Container>

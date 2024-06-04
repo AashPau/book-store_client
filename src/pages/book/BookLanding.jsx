@@ -1,5 +1,5 @@
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Col, Row, Spinner } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
@@ -10,16 +10,23 @@ import { addNewBurrowAction } from "../../features/burrow/burrowAction";
 
 const BookLanding = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { _id } = useParams();
   const { books } = useSelector((state) => state.bookInfo);
-  const { user } = useSelector((state) => {
-    state.userInfo;
-  });
+  const { user } = useSelector((state) => state.userInfo);
   const book = books.find((item) => item._id === _id);
   if (!book?._id) {
     return <Spinner animation="border" variant="success" />;
   }
-  const { thumbnail, title, author, publishedYear, description } = book;
+  const {
+    thumbnail,
+    title,
+    author,
+    publishedYear,
+    description,
+    isAvailable,
+    expectedAvailable,
+  } = book;
   const handleOnBookBurrow = () => {
     if (window.confirm("Are you sure you want to burrow this book?")) {
       dispatch(
@@ -44,17 +51,24 @@ const BookLanding = () => {
           <p>
             {author} - {publishedYear}
           </p>
-          <p>
+          <div>
             <Stars stars={3} />
-          </p>
+          </div>
           <p className="mt-5">{description.slice(0, 130)}...</p>
           <div className="d-grid">
             {user?._id ? (
-              <Button disabled={isAvailable} onClick={handleOnBookBurrow}>
-                Burrow this book
+              <Button disabled={!isAvailable} onClick={handleOnBookBurrow}>
+                {isAvailable
+                  ? "Burrow This Book"
+                  : "Expected available date: " +
+                    expectedAvailable.slice(0, 10)}
               </Button>
             ) : (
-              <Link className="d-grid" to="/signin">
+              <Link
+                className="d-grid"
+                to="/signin"
+                state={{ from: { location } }}
+              >
                 <Button>Login to Burrow</Button>
               </Link>
             )}

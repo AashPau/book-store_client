@@ -6,9 +6,10 @@ import { toast } from "react-toastify";
 
 import { userSignInAction } from "../../features/users/userAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const emailRef = useRef("");
   const passRef = useRef("");
@@ -17,9 +18,11 @@ const SignIn = () => {
   const { user } = useSelector((state) => state.userInfo);
   console.log(user);
 
+  const sendTo = location?.state?.from?.location?.pathname || "/dashboard";
+
   useEffect(() => {
-    user?._id && navigate("/dashboard");
-  }, [user?._id, navigate]);
+    user?._id && navigate(sendTo);
+  }, [user?._id, navigate, sendTo]);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();

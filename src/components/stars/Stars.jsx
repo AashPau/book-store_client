@@ -26,11 +26,11 @@ export const Stars = ({ stars = 0 }) => {
 
   for (let i = 0; i < maxStars; i++) {
     if (i < fullStar) {
-      showStars.push(<FaStar className="text-warning" />);
+      showStars.push(<FaStar className="text-warning" key={i} />);
     } else if (i === fullStar && halfStar) {
-      showStars.push(<FaStarHalfAlt className="text-warning" />);
+      showStars.push(<FaStarHalfAlt className="text-warning" key={i} />);
     } else {
-      showStars.push(<FaRegStar className="" />);
+      showStars.push(<FaRegStar className="" key={i} />);
     }
   }
 

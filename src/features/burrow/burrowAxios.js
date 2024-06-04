@@ -9,31 +9,31 @@ export const postNewBurrow = async (obj) => {
     data: obj,
     isPrivate: true,
   };
-  return await apiProcesser(axiosObj);
+  return apiProcesser(axiosObj);
 };
 
-export const fetchBurrows = async (isPrivate) => {
+export const fetchBurrows = async () => {
   const axiosObj = {
     method: "get",
-    url: isPrivate ? burrowEP + "/all" : burrowEP,
-    isPrivate: true,
-  };
-  return await apiProcesser(axiosObj);
-};
-
-export const fetchSingleBurrow = async (_id) => {
-  const axiosObj = {
-    method: "get",
-    url: burrowEP + "/" + _id,
-  };
-  return await apiProcesser(axiosObj);
-};
-export const editSingleBurrow = async (obj) => {
-  const axiosObj = {
-    method: "put",
     url: burrowEP,
     isPrivate: true,
-    data: obj,
   };
-  return await apiProcesser(axiosObj);
+  return apiProcesser(axiosObj);
 };
+// export const fetchSingleBurrow = async (_id) => {
+//   const axiosObj = {
+//     method: "get",
+//     url: burrowEP + "/" + _id,
+//   };
+//   return apiProcesser(axiosObj);
+// };
+
+// export const updateABurrow = async (obj) => {
+//   const axiosObj = {
+//     method: "put",
+//     url: burrowEP,
+//     data: obj,
+//     isPrivate: true,
+//   };
+//   return apiProcesser(axiosObj);
+// };
