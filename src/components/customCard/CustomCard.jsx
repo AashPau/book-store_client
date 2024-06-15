@@ -14,7 +14,7 @@ export const CustomCard = ({
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>
-          {author}-{publishedYear}
+          {author} - {publishedYear}
         </Card.Text>
       </Card.Body>
     </Card>

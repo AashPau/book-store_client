@@ -36,7 +36,7 @@ export const ReviewForm = ({ burrow, setBurrow }) => {
       <Form onSubmit={handleOnSubmit}>
         <CustomInput
           label="Title"
-          name="tilte"
+          name="title"
           type="text"
           required
           placeholder="Awesome book"

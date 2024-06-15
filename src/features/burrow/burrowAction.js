@@ -31,7 +31,6 @@ export const fetchBurrowsAction = () => async (dispatch) => {
 
 export const returnBurrowAction = (obj) => async (dispatch) => {
   const pending = returnBook(obj);
-
   toast.promise(pending, {
     pending: "Please wait...",
   });

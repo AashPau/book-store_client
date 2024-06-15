@@ -28,7 +28,7 @@ export const fetchSingleBurrow = async (_id) => {
   return apiProcesser(axiosObj);
 };
 
-export const updateABurrow = async (obj) => {
+export const returnBook = async (obj) => {
   const axiosObj = {
     method: "put",
     url: burrowEP,

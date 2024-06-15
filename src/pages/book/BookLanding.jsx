@@ -14,6 +14,8 @@ const BookLanding = () => {
   const { _id } = useParams();
   const { books } = useSelector((state) => state.bookInfo);
   const { user } = useSelector((state) => state.userInfo);
+  const { pubReviews } = useSelector((state) => state.reviewInfo);
+
   const book = books.find((item) => item._id === _id);
   if (!book?._id) {
     return <Spinner animation="border" variant="success" />;
@@ -38,6 +40,15 @@ const BookLanding = () => {
       );
     }
   };
+
+  // reviews only for this book
+  const bookReviews = pubReviews.filter((item) => item.bookId === _id);
+
+  const avgRatings = bookReviews.length
+    ? bookReviews.reduce((acc, item) => acc + item.ratings, 0) /
+      bookReviews.length
+    : 0;
+
   return (
     <DefaultLayout>
       <Row className="g-2">
@@ -51,9 +62,7 @@ const BookLanding = () => {
           <p>
             {author} - {publishedYear}
           </p>
-          <div>
-            <Stars stars={3} />
-          </div>
+          <Stars stars={avgRatings} totalReviews={bookReviews.length} />
           <p className="mt-5">{description.slice(0, 130)}...</p>
           <div className="d-grid">
             {user?._id ? (
@@ -65,19 +74,22 @@ const BookLanding = () => {
               </Button>
             ) : (
               <Link
-                className="d-grid"
                 to="/signin"
-                state={{ from: { location } }}
+                className="d-grid"
+                state={{
+                  from: { location },
+                }}
               >
-                <Button>Login to Burrow</Button>
+                <Button>Login to burrow</Button>
               </Link>
             )}
           </div>
         </Col>
       </Row>
-      <Row className="py-5">
+      <Row className="py-5 ">
         <Col>
           {/* tab bar */}
+
           <Tabs
             defaultActiveKey="description"
             id="uncontrolled-tab-example"
@@ -86,8 +98,9 @@ const BookLanding = () => {
             <Tab eventKey="description" title="Description">
               {description}
             </Tab>
+
             <Tab eventKey="reviews" title="Reviews">
-              <ReviewBlock />
+              <ReviewBlock pubReviews={bookReviews} />
             </Tab>
           </Tabs>
 
