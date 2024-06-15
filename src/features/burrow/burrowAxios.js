@@ -20,20 +20,20 @@ export const fetchBurrows = async () => {
   };
   return apiProcesser(axiosObj);
 };
-// export const fetchSingleBurrow = async (_id) => {
-//   const axiosObj = {
-//     method: "get",
-//     url: burrowEP + "/" + _id,
-//   };
-//   return apiProcesser(axiosObj);
-// };
+export const fetchSingleBurrow = async (_id) => {
+  const axiosObj = {
+    method: "get",
+    url: burrowEP + "/" + _id,
+  };
+  return apiProcesser(axiosObj);
+};
 
-// export const updateABurrow = async (obj) => {
-//   const axiosObj = {
-//     method: "put",
-//     url: burrowEP,
-//     data: obj,
-//     isPrivate: true,
-//   };
-//   return apiProcesser(axiosObj);
-// };
+export const updateABurrow = async (obj) => {
+  const axiosObj = {
+    method: "put",
+    url: burrowEP,
+    data: obj,
+    isPrivate: true,
+  };
+  return apiProcesser(axiosObj);
+};

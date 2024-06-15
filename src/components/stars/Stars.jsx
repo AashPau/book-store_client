@@ -1,38 +1,39 @@
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 
-const maxStars = 5;
-export const Stars = ({ stars = 0 }) => {
+const maxRating = 5;
+export const Stars = ({ stars = 0, totalReviews }) => {
   const halfStar = !Number.isInteger(stars);
 
-  const fullStar = Math.floor(stars);
+  const fullRating = Math.floor(stars);
 
-  const emptyStar = maxStars - fullStar - (halfStar ? 1 : 0);
+  const emptyRating = maxRating - fullRating - (halfStar ? 1 : 0);
 
-  if (stars > maxStars) {
-    return "invalid ratings";
+  if (stars > maxRating) {
+    return "Invalid ratings";
   }
+
   const showStars = [];
-  // for (let i = 0; i < fullStar; i++) {
-  //   showStars.push(<FaStar className="text-warning " />);
-  // }
-  // halfStar && showStars.push(<FaStarHalfAlt className="text-warning " />);
+  for (let i = 0; i < fullRating; i++) {
+    showStars.push(<FaStar className="text-warning  " />);
+  }
+  halfStar &&
+    showStars.push(<FaStarHalfAlt className="text-warning text-secondary  " />);
 
-  // if (emptyStar) {
-  //   for (let i = 0; i < emptyStar; i++) {
-  //     showStars.push(<FaRegStar className=" " />);
-  //   }
-  // }
-
-  for (let i = 0; i < maxStars; i++) {
-    if (i < fullStar) {
-      showStars.push(<FaStar className="text-warning" key={i} />);
-    } else if (i === fullStar && halfStar) {
-      showStars.push(<FaStarHalfAlt className="text-warning" key={i} />);
-    } else {
-      showStars.push(<FaRegStar className="" key={i} />);
+  if (emptyRating) {
+    for (let i = 0; i < emptyRating; i++) {
+      showStars.push(<FaRegStar />);
     }
   }
 
-  return <div className="fs-3">{showStars} stars</div>;
+  return (
+    <div className="fs-3">
+      {showStars}
+      {totalReviews && (
+        <span>
+          ({stars.toFixed(1)}/{totalReviews})
+        </span>
+      )}
+    </div>
+  );
 };
