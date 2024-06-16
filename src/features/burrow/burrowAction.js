@@ -1,5 +1,10 @@
 import { getAllBooksAction, getSingleBookAction } from "../books/bookAction";
-import { fetchBurrows, postNewBurrow, returnBook } from "./burrowAxios";
+import {
+  fetchAllBurrows,
+  fetchBurrows,
+  postNewBurrow,
+  returnBook,
+} from "./burrowAxios";
 import { toast } from "react-toastify";
 import { setBurrows } from "./burrowSlice";
 
@@ -22,6 +27,15 @@ export const addNewBurrowAction = (obj) => async (dispatch) => {
 
 export const fetchBurrowsAction = () => async (dispatch) => {
   const { status, burrows } = await fetchBurrows();
+  console.log(status, burrows);
+
+  if (status === "success") {
+    dispatch(setBurrows(burrows));
+  }
+};
+
+export const fetchAllBurrowsAction = () => async (dispatch) => {
+  const { status, burrows } = await fetchAllBurrows();
   console.log(status, burrows);
 
   if (status === "success") {

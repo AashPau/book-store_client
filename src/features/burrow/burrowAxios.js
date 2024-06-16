@@ -20,6 +20,14 @@ export const fetchBurrows = async () => {
   };
   return apiProcesser(axiosObj);
 };
+export const fetchAllBurrows = async () => {
+  const axiosObj = {
+    method: "get",
+    url: burrowEP + "/all",
+    isPrivate: true,
+  };
+  return apiProcesser(axiosObj);
+};
 export const fetchSingleBurrow = async (_id) => {
   const axiosObj = {
     method: "get",
